@@ -18,8 +18,7 @@ DevOps notes and resources
 
 Windows users: [Install PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-windows-powershell)
 
-
-## Compare VMs and Containers side by side
+## Compare a Virtual Machine and a Container side by side
 
 ### Pre-requisites
 
@@ -27,6 +26,9 @@ Windows users: [Install PowerShell](https://docs.microsoft.com/en-us/powershell/
 - Vagrant: [Installation reference](vagrant/README.md)
 
 ### Container
+
+Open this in a separate terminal window from the Virtual Machine.
+
 - SSH in a running container.
 
     ```
@@ -48,4 +50,21 @@ Windows users: [Install PowerShell](https://docs.microsoft.com/en-us/powershell/
 
 ### Virtual Machine
 
-- Provision the machine using Vagrant
+Open this in a separate terminal window from the Container.
+
+- Provision the machine using Vagrant. This might take a while.
+
+    ```
+    cd vagrant
+    vagrant up
+    ```
+- After the VM is fully provisioned. SSH into the VM
+
+    ```
+    vagrant ssh
+    ```
+
+- While ssh'ed in the VM, show the running processes.
+    ```
+    top
+    ```
