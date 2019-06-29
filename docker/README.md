@@ -9,6 +9,8 @@
 
 ## Docker Images
 
+This image will be using [this Dockerfile](hello-world-node/Dockerfile).
+
 Build the image.
 
     # v1 tag
