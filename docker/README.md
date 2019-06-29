@@ -61,10 +61,12 @@ Display the running containers
 
 Delete the containers.
 
-Command: `docker rmi <image name or image ID>`
+Command: `docker rm -f <container name or ID>`. 
 
-    docker rm app0
-    docker rm app1
+The parameter `-f` is used to force remove the container without stopping it.
+
+    docker rm -f app0
+    docker rm -f app1
 
 ## Credits
 - https://github.com/nburgess/react-express-example
