@@ -1,14 +1,27 @@
-const http = require('http');
+const express = require('express');
+const path = require('path');
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const app = express();
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// An api endpoint that returns a short list of items
+app.get('/api/getlist', (req,res) => {
+	var list = ["item1", "item2", "item3"];
+	res.json(list);
+	console.log('Sent list of items');
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World\n');
+    console.log('Displayed hello world');
 });
+
+const port = process.env.PORT || 5000;
+app.listen(port);
+
+console.log('App is listening on port ' + port);

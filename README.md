@@ -36,17 +36,6 @@ Open this in a separate terminal window from the Virtual Machine.
     ```
     - Pulls the busybox Docker image.
     - Runs it as a container.
-- Run the following commands in the box.
-    
-    Check the files.
-    ```
-    ls -a
-    ```
-
-    Show the running processes.
-    ```
-    top
-    ``` 
 
 ### Virtual Machine
 
@@ -64,7 +53,16 @@ Open this in a separate terminal window from the Container.
     vagrant ssh
     ```
 
-- While ssh'ed in the VM, show the running processes.
-    ```
-    top
-    ```
+### Run the following in each terminal window
+In each of the terminal window opened above for the container and VM, run the following commands.
+
+```
+# Compare the disk space sizes
+du - sh
+
+# Compare the processes
+top
+
+# Show what you can find a process
+ls -al /proc/1/ns
+```
