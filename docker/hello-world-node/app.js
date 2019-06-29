@@ -17,8 +17,9 @@ app.get('/api/getlist', (req,res) => {
 app.get('*', (req,res) =>{
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World\n');
+    res.end('Hello World from Node\n');
     console.log('Displayed hello world');
+    console.log('Running v1 tag');
 });
 
 const port = process.env.PORT || 5000;

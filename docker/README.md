@@ -11,6 +11,10 @@
 
 This image will be using [this Dockerfile](hello-world-node/Dockerfile).
 
+Make sure you are in the `docker/hello-world-node` folder.
+
+    cd hello-world-node
+
 Build the image.
 
     # v1 tag
@@ -36,6 +40,31 @@ Command: `docker rmi <image name or image ID>`
     # remove an images including all its tags
     docker rmi myapp
 
+## Docker Containers
+
+These containers will be using the images built from [this Dockerfile](hello-world-node/Dockerfile).
+
+Make sure that you have followed the instructions in the [Docker Images](#docker-images) section.
+
+Run the containers.
+
+    # Run app0 in port 8080
+    docker run -d -p 8080:5000 --name app0 myapp:latest
+
+    # Run app1 in port 8081
+    docker run -d -p 8081:5000 --name app1 myapp:latest    
+
+
+Display the running containers
+
+    docker ps -a
+
+Delete the containers.
+
+Command: `docker rmi <image name or image ID>`
+
+    docker rm app0
+    docker rm app1
 
 ## Credits
 - https://github.com/nburgess/react-express-example
