@@ -10,8 +10,8 @@ Local VM with Puppet.
 
 ## Sandbox for Puppet Master Setup
 
-Start the VM.
-    
+Start the VM. Make sure you are int the `puppet` folder where there is a `Vagrantfile`.
+
     vagrant up
 
 When the machine is ready. Login to the machine.
@@ -87,4 +87,45 @@ Install r10k. For demployment and integration with version control.
 
 This is the basis of the r10k control repo that we will use here: https://github.com/puppetlabs/control-repo
 
-We will use `production` branch instead of `master` to avoid confusion with `puppet master`.
+We will use `production` branch instead of `master` to avoid confusion with `puppet master`. Create a `sandbox` branch instead.
+
+Setup r10k
+
+    mkdir /etc/puppetlabs/r10k
+
+Copy the file from [r10k/r10k.yaml](r10k/r10k.yaml)
+
+Deploy the changes from github
+
+    r10k deploy environment -p
+
+Check if the code is there
+
+    cd /etc/puppetlabs/code/environments/
+
+It's best practice to version control every change to puppet changes.
+
+Ensure that the README.md file is present.
+
+Create `manifests/site.pp` in Github repo.
+
+Paste the following into your code
+
+    node default {
+        file { '/root/README.md':
+            ensure  => file,
+            content => 'This is a readme',
+            owner   => 'root',
+        }
+    }
+
+Run 
+
+    r10k deploy environment -p
+
+    puppet agent -t
+
+
+Check file
+
+    cat /root/README.md
