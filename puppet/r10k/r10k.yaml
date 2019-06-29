@@ -1,0 +1,11 @@
+---
+# Cached git repos
+:cachedir: '/var/cache/r10k'
+
+# Repos. clones git repo
+:sources:
+  # branch => environment  mapping in /etc/puppetlabs/code/environments
+  # replace username with your github username
+  :my-org:
+    remote: 'https://github.com/$YOUR_GITHUB_USERNAME$/control-repo.git'
+    basedir: '/etc/puppetlabs/code/environments'

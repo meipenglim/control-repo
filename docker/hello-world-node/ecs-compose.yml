@@ -1,0 +1,12 @@
+version: '3'
+services:
+  app:
+    image: 423643595253.dkr.ecr.ap-southeast-1.amazonaws.com/hello-world-node:latest
+    ports:
+    - "5000:5000"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: hello-world-node
+        awslogs-region: ap-southeast-1
+        awslogs-stream-prefix: hello-world-node
