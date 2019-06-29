@@ -1,9 +1,12 @@
 # Puppet
 
+Local VM with Puppet.
+
+![alt text](diagrams/puppet-rk10-github.png "Logo Title Text 1")
+
 - Puppet master and agent will be in the same VM.
 - rk10 will be used so we can easily organise our Puppet files in one Github repository.
 
-![alt text](diagrams/puppet-rk10-github.png "Logo Title Text 1")
 
 ## Sandbox for Puppet Master Setup
 
