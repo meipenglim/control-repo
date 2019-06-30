@@ -101,20 +101,21 @@ Deploy the changes from github
 
 Check if the code is there
 
-    cd /etc/puppetlabs/code/environments/
+    ls -al /etc/puppetlabs/code/environments/
 
 It's best practice to version control every change to puppet changes.
 
 Ensure that the README.md file is present.
 
 Create `manifests/site.pp` in Github repo.
+We can edit directly from GitHub's web interface.
 
 Paste the following into your code
 
     node default {
         file { '/root/README.md':
             ensure  => file,
-            content => 'This is a readme',
+            content => 'This should exist',
             owner   => 'root',
         }
     }
@@ -129,3 +130,82 @@ Run
 Check file
 
     cat /root/README.md
+
+## Try to break the deployment
+Add the code below in to the default node and redeploy your control-repo with r10k.
+
+    file { '/root/README.md':
+        owner   => 'root',
+    }
+
+So your default node will look like this
+
+    node default {
+        file { '/root/README.md':
+            ensure  => file,
+            content => 'This should exist',
+            owner   => 'root',
+        }
+        file { '/root/README.md':
+            owner   => 'root',
+        }        
+    }
+
+Re-deploy your changes
+
+    r10k deploy environment -p
+    puppet agent -t
+
+You should get an error. 
+Revert your changes in GitHub and re-deploy.
+
+
+## Puppet modules
+
+https://forge.puppet.com
+
+search for docker
+
+Create a `Puppetfile` in the root director of your control-repo. 
+
+    mod 'puppet/nodejs'
+    mod 'puppet/mongodb'
+    mod 'puppetlabs/stdlib'
+    mod 'puppetlabs/apt'
+
+Commit your changes.
+
+Deploy changes to repo.
+
+    r10k deploy environment -p
+    puppet agent -t
+
+Classes contains -> Nodes
+
+Roles and profiles
+Profiles Can be grouped into roles Roles 
+
+Profiles
+- bits and pieces
+- e.g. web server, db server
+
+
+ROles
+- Buisness role of a machine e.g. this is a production app server or a developer workstation.
+
+
+Create a new file
+
+Create the following file in Github: `site/profile/manifests/web.pp`
+
+    class profile::web {
+        include 
+    }
+
+
+
+Create the file `site/role/manifests/app.pp`
+
+    class role::app {
+        include profile:web
+    }
