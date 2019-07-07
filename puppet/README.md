@@ -10,100 +10,100 @@ Local VM with Puppet.
 
 ## Sandbox for Puppet Master Setup
 
-Start the VM. Make sure you are int the `puppet` folder where there is a `Vagrantfile`.
+Make sure you are in the `puppet` directory of the repository.
+
+    cd puppet
+
+Start the VM. Make sure you are int the `puppet` folder where there is a `Vagrantfile`. This will take a while if you are running it for the first time.
 
     vagrant up
 
-When the machine is ready. Login to the machine.
+When the machine is ready, after it has finished booting up. Login / ssh to the machine.
 
     vagrant ssh
 
-Root
+Switch to root user.
 
     sudo su
 
-Run the following
+Install what we need: puppet server package, vim and git. `vim` can be replaced with an editor of your choice.
 
     rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 
-
-Install what we need: puppet server package, vim and git.
-
     yum install -y puppetserver vim git
 
-`vim` can be replaced with an editor of your choice.
-
-Check puppet server config
+Open the puppet the server configuration.
 
     vim /etc/sysconfig/puppetserver
 
 Replace the memory allocation value in `JAVA_ARGS` with what we will need for this exercise.
 
-Foor example:
+Original `JAVA_ARGS` value
 
-Original: `JAVA_ARGS="-Xms2g -Xmx2g -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"`
+    JAVA_ARGS="-Xms2g -Xmx2g -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"
 
-Modified: `JAVA_ARGS="-Xms512m -Xmx512m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"`
+Modified `JAVA_ARGS` value
 
+    JAVA_ARGS="-Xms512m -Xmx512m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"
 
-Start puppet server
+Start puppet server. This might take around 1-2 minutes the first time you start it.
 
-    # This might take around 1-2 minutes the first time you start it.
     systemctl start puppetserver
     systemctl enable puppetserver
 
-Configure 
+Configure the puppet server host. Edit the `puppet.conf` file.
 
     vim /etc/puppetlabs/puppet/puppet.conf
 
-Add the following at the bottom of the conf file. We need to tell our agent which server to use. Point to itself.
+Add the following at the bottom of the conf file. We need to tell our agent which server to use. For this exercise, it should point to itself.
 
     [agent]
     server = master.puppet.vm
 
-Edit bash_profile
+Edit bash_profile to update the PATH value.
 
     vim .bash_profile
 
-
-Update the PATH value
+The new path value will look like the following.
 
     PATH=$PATH:/opt/puppetlabs/puppet/bin:$HOME/.local/bin:$HOME/bin
 
-After the changes.
+Load your bash profile the changes.
 
     source .bash_profile
 
-`gem` should be accessible now
+`gem` should be accessible by now.
 
     gem
 
-Install r10k. For demployment and integration with version control.
+Install `r10k`. This will be used for deployment and integration with our version control.
 
     gem install r10k
 
 
 ## Github public repo setup
 
+It's best practice to version control every change to puppet changes. This exercise is meant to demonstrate a common good practice in provisioning servers using Puppet.
+
 This is the basis of the r10k control repo that we will use here: https://github.com/puppetlabs/control-repo
 
-We will use `production` branch instead of `master` to avoid confusion with `puppet master`. Create a `sandbox` branch instead.
+Create your own `contro-repo` in GitHub using its web interface. Add a `README.md` file.
 
-Setup r10k
+We will use `production` branch instead of `master` to avoid confusion with puppet's `master`.
+
+Configure your `r10k`. Copy the file from [r10k/r10k.yaml](r10k/r10k.yaml) into the directory you have created.
 
     mkdir /etc/puppetlabs/r10k
 
-Copy the file from [r10k/r10k.yaml](r10k/r10k.yaml)
+Update the remote git repository to point to the git repository that you have created above e.g. you can try to edit the `README.md` file for now to test if it works with our setup.
 
-Deploy the changes from github
+Deploy the changes from GitHub.
 
     r10k deploy environment -p
 
-Check if the code is there
+Check if the code is there,.
 
     ls -al /etc/puppetlabs/code/environments/
-
-It's best practice to version control every change to puppet changes.
 
 Ensure that the README.md file is present.
 
