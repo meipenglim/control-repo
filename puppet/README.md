@@ -1,12 +1,11 @@
-# Puppet
+# Infrastructure as Code with Puppet
 
-Local VM with Puppet.
-This exercise is meant to help you understand how Puppet is configured and operated.
+This exercise is meant to help you understand how Infrastructure works with Puppet as an example.
 
 ## Pre-requisites
 
 - A GitHub account.
-- Pre-requisites in the README of this repo: https://github.com/ardydedase/devops
+- Pre-requisites in the README.md of this repo: https://github.com/ardydedase/devops
 - You have cloned this repo locally: https://github.com/ardydedase/devops
 
 ## High level design
