@@ -7,7 +7,7 @@ All of AWS services in this tutorial should be in the same region.
 ## Pre-requisites
 - Github Account
 - AWS Account
-- AWS EC2 Key Pair. [Follow this tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair) and take not of your Key Pair.
+- AWS EC2 Key Pair. [Follow this tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair) and take note of your Key Pair.
 
 ## Step by step guide
 
