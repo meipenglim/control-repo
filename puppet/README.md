@@ -1,11 +1,11 @@
 # Infrastructure as Code with Puppet
 
-This exercise is meant to help you understand how Infrastructure works with Puppet as an example.
+This exercise is meant to help you understand how Infrastructure as code works using Puppet.
 
 ## Pre-requisites
 
 - A GitHub account.
-- You have cloned this repo locally: https://github.com/ardydedase/devops
+- You have cloned this repo locally: [https://github.com/ardydedase/devops](https://github.com/ardydedase/devops)
 - Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - Install [Vagrant](https://www.vagrantup.com/downloads.html)
     - Note that Windows users might need to logout and login again.
@@ -273,4 +273,4 @@ You should get an error at this point. Revert your changes in GitHub and re-depl
     node --version
     ```
 
-More learning resources in: https://learn.puppet.com/
+More learning resources in: [https://learn.puppet.com/](https://learn.puppet.com/)
