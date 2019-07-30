@@ -14,7 +14,8 @@ COPY ./app.js ./
 RUN npm install
 
 # uncomment to illustrate tagging
-RUN npm install winston
+# RUN npm install winston
+COPY ./ecs-compose.yml ./
 
 VOLUME $APP_DIR/public
 

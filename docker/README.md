@@ -34,10 +34,10 @@ Remove the image. Use the image ID and name shown after running `docker images`.
 
 Command: `docker rmi <image name or image ID>`
 
-    # remove a tagged image
+    # Remove a tagged image
     docker rmi myapp:v1
 
-    # remove an images including all its tags
+    # Remove an image including all its tags
     docker rmi myapp
 
 ## Docker Containers
