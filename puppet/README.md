@@ -1,5 +1,7 @@
 # Infrastructure as Code with Puppet
 
+This is based on [this step-by-step guide](https://github.com/ardydedase/devops/blob/master/puppet/README.md).
+
 This exercise is meant to help you understand how Infrastructure as code works using Puppet.
 
 ## Pre-requisites
