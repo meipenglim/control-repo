@@ -43,18 +43,21 @@ This exercise is meant to help you understand how Infrastructure as code works u
     sudo su
     ```
 
-- Install what we need: Puppet server package, vim and git. `vim` can be replaced with an editor of your choice.
+- Install what we need: Puppet server package, nano and git. `nano` can be replaced with an editor of your choice e.g. `vim`. Using `nano` here for simplicity.
 
     ```
     rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 
-    yum install -y puppetserver vim git
+    yum install -y puppetserver nano git
     ```
 
 - Open the puppet the server configuration.
 
+    When using `nano`. Press CTRL + x to choose your option.
+    `nano` will then ask you if you want to save your changes
+
     ```
-    vim /etc/sysconfig/puppetserver
+    nano -b /etc/sysconfig/puppetserver
     ```
 
 - Replace the memory allocation value in `JAVA_ARGS` with what we will need for this exercise.
@@ -81,10 +84,10 @@ This exercise is meant to help you understand how Infrastructure as code works u
 - Configure the puppet server host. Edit the `puppet.conf` file.
 
     ```
-    vim /etc/puppetlabs/puppet/puppet.conf
+    nano -b /etc/puppetlabs/puppet/puppet.conf
     ```
 
-- Add the following at the bottom of the conf file. We need to tell our agent which server to use. For this exercise, it should point to itself. `master.puppet.vm` matches our Vagrant hostname.
+- Add the following at the bottom of the conf file. We need to tell our agent which server to point to as master. For this exercise, it should point to itself. `master.puppet.vm` matches our Vagrant hostname.
 
     ```
     [agent]
@@ -94,7 +97,7 @@ This exercise is meant to help you understand how Infrastructure as code works u
 - Edit bash_profile to update the `PATH` value.
 
     ```
-    vim .bash_profile
+    nano -b .bash_profile
     ```
 
 - The updated `PATH` value should look like the following.
@@ -138,7 +141,7 @@ This is the basis of the r10k control repo that we will use here: https://github
 
     ```
     touch /etc/puppetlabs/r10k/r10k.yaml
-    vim /etc/puppetlabs/r10k/r10k.yaml
+    nano -b /etc/puppetlabs/r10k/r10k.yaml
     ```
     Paste the following cofiguration to the `r10k.yaml` file. 
     Replacing the `$YOUR_GITHUB_USERNAME$` with your own GitHub username.
